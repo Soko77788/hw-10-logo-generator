@@ -1,7 +1,8 @@
 //import fs, inquirer package, and 3 constructors from shapes.js
-import fs from 'fs';
-import inquirer from 'inquirer';
-import { Triangle, Circle, Square } from './lib/shapes.js';
+const fs = require('fs');
+const inquirer = require('inquirer');
+const { Triangle, Circle, Square } = require('./lib/shapes.js');
+
 
 // collecting prompt answers for text, color, and shape
 function promptUser() {
@@ -36,7 +37,7 @@ function promptUser() {
 
 
 
-function generateSVG(shape) {
+function render(shape) {
   if (!shape || !shape.shapeType) {
       console.log('Invalid shape object.');
       return;
@@ -90,7 +91,7 @@ async function main() {
               return;
       }
 
-      const svgContent = shape.generateSVG(); // Call generateSVG() method of the shape object
+      const svgContent = shape.render(); // Call render() method of the shape object
 
       fs.writeFileSync('logo.svg', svgContent);
       console.log('Generated logo.svg');
